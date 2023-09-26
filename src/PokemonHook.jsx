@@ -14,7 +14,7 @@ export default function PokemonHook(){
 
     // runs at the start or on the first render of this component 
     // useEffect((), []) is equivalent to componentDidMount
-    // because the dependency array is empty 
+    // because the dependency array is empty []
     // Fetch request API with async 
     useEffect(() => {
 
@@ -26,10 +26,21 @@ export default function PokemonHook(){
 
 			setPokemon(apiData);
 		}
-        
+
         // variable declared 
 		fetchData();
 	}, []);
+
+    // useEffect here is equivalent to componentDidUpdate -> it has dependency array [pokemon]
+    useEffect(() => {
+		console.log("pokemon was updated");
+	}, [pokemon])
+
+
+    // useEffect here is equivalent to componentDidUnMount
+    useEffect(() => {
+        console.log("PokemonHook going away now...");
+    }, [pokemon])
 
     // example setState #1
     // return (
